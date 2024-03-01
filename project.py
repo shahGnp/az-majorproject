@@ -2,7 +2,7 @@ import torch
 
 # Some basic setup:
 # Setup detectron2 logger
-import project
+# import project
 from detectron2.utils.logger import setup_logger
 setup_logger()
 
@@ -12,7 +12,7 @@ import os, json, cv2, random
 # from google.colab.patches import cv2_imshow
 
 # import some common detectron2 utilities
-from project import model_zoo
+from detectron2 import model_zoo
 from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
 from detectron2.utils.visualizer import Visualizer
@@ -77,6 +77,5 @@ def detectImage(predictor, image_path):
 
 
 
-defineDataset()
 predictor=cfgModel()
 detectImage(predictor,'./guatemala-volcano_00000000_pre_disaster.png')
