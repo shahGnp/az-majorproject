@@ -2,17 +2,17 @@ import torch
 
 # Some basic setup:
 # Setup detectron2 logger
-import detectron2
+import project
 from detectron2.utils.logger import setup_logger
 setup_logger()
 
 # import some common libraries
 import numpy as np
 import os, json, cv2, random
-from google.colab.patches import cv2_imshow
+# from google.colab.patches import cv2_imshow
 
 # import some common detectron2 utilities
-from detectron2 import model_zoo
+from project import model_zoo
 from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
 from detectron2.utils.visualizer import Visualizer
@@ -24,23 +24,21 @@ from detectron2.utils.visualizer import ColorMode
 
 
 
-def defineDataset():
-    if "my_dataset_train" in detectron2.data.DatasetCatalog.list():
-        detectron2.data.DatasetCatalog.remove("my_dataset_train")
-        detectron2.data.MetadataCatalog.remove("my_dataset_train")
-    if "my_dataset_val" in detectron2.data.DatasetCatalog.list():
-        detectron2.data.DatasetCatalog.remove("my_dataset_val")
-        detectron2.data.MetadataCatalog.remove("my_dataset_val")
+if "my_dataset_train" in project.data.DatasetCatalog.list():
+    project.data.DatasetCatalog.remove("my_dataset_train")
+    project.data.MetadataCatalog.remove("my_dataset_train")
+if "my_dataset_val" in project.data.DatasetCatalog.list():
+    project.data.DatasetCatalog.remove("my_dataset_val")
+    project.data.MetadataCatalog.remove("my_dataset_val")
 
-    register_coco_instances("my_dataset_train", {}, "./dataset/combined_xview_instance_segmentation_dataset_train.json", "./dataset/")
-    register_coco_instances("my_dataset_val", {}, "./dataset/combined_xview_instance_segmentation_dataset_val.json", "./dataset/")
+register_coco_instances("my_dataset_train", {}, "./dataset/combined_xview_instance_segmentation_dataset_train.json", "./dataset/")
+register_coco_instances("my_dataset_val", {}, "./dataset/combined_xview_instance_segmentation_dataset_val.json", "./dataset/")
 
-    train_metadata = MetadataCatalog.get("my_dataset_train")
-    train_dataset_dicts = DatasetCatalog.get("my_dataset_train")
+train_metadata = MetadataCatalog.get("my_dataset_train")
+train_dataset_dicts = DatasetCatalog.get("my_dataset_train")
 
-    val_metadata = MetadataCatalog.get("my_dataset_val")
-    val_dataset_dicts = DatasetCatalog.get("my_dataset_val")
-    return train_metadata, val_metadata
+val_metadata = MetadataCatalog.get("my_dataset_val")
+val_dataset_dicts = DatasetCatalog.get("my_dataset_val")
 
 def cfgModel():
     cfg = get_cfg()
