@@ -62,7 +62,7 @@ predictor = DefaultPredictor(cfg)
 
 
 def detectImage(predictor, image_path):
-    im = cv2.imread('./',image_path)
+    im = cv2.imread(os.path.join('./',image_path))
     outputs = predictor(im)
     v = Visualizer(im[:, :, ::-1],
                     metadata=val_metadata,
