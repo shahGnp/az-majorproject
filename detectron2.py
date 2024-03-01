@@ -1,4 +1,4 @@
-import torch, detectron2
+import torch
 
 # Some basic setup:
 # Setup detectron2 logger
