@@ -75,3 +75,5 @@ def detectImage(predictor, image_path):
     out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
     cv2_imshow(out.get_image()[:, :, ::-1])
 
+
+
