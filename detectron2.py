@@ -73,7 +73,12 @@ def detectImage(predictor, image_path):
                     instance_mode=ColorMode.IMAGE_BW   # remove the colors of unsegmented pixels. This option is only available for segmentation models
         )
     out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
-    cv2_imshow(out.get_image()[:, :, ::-1])
+    # cv2_imshow(out.get_image()[:, :, ::-1])
+    cv2.imwrite('./detecton.png',out.get_image()[:, :, ::-1])
+    
 
 
 
+defineDataset()
+predictor=cfgModel()
+detectImage(predictor,'./guatemala-volcano_00000000_pre_disaster.png')
