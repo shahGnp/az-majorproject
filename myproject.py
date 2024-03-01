@@ -24,12 +24,12 @@ from detectron2.utils.visualizer import ColorMode
 
 
 
-if "my_dataset_train" in project.data.DatasetCatalog.list():
-    project.data.DatasetCatalog.remove("my_dataset_train")
-    project.data.MetadataCatalog.remove("my_dataset_train")
-if "my_dataset_val" in project.data.DatasetCatalog.list():
-    project.data.DatasetCatalog.remove("my_dataset_val")
-    project.data.MetadataCatalog.remove("my_dataset_val")
+if "my_dataset_train" in detectron2.data.DatasetCatalog.list():
+    detectron2.data.DatasetCatalog.remove("my_dataset_train")
+    detectron2.data.MetadataCatalog.remove("my_dataset_train")
+if "my_dataset_val" in detectron2.data.DatasetCatalog.list():
+    detectron2.data.DatasetCatalog.remove("my_dataset_val")
+    detectron2.data.MetadataCatalog.remove("my_dataset_val")
 
 register_coco_instances("my_dataset_train", {}, "./dataset/combined_xview_instance_segmentation_dataset_train.json", "./dataset/")
 register_coco_instances("my_dataset_val", {}, "./dataset/combined_xview_instance_segmentation_dataset_val.json", "./dataset/")
