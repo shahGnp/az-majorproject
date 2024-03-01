@@ -2,7 +2,7 @@ import torch
 
 # Some basic setup:
 # Setup detectron2 logger
-# import project
+import detectron2
 from detectron2.utils.logger import setup_logger
 setup_logger()
 
