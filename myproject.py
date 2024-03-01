@@ -24,18 +24,19 @@ from detectron2.utils.visualizer import ColorMode
 
 
 
-if "my_dataset_train" in detectron2.data.DatasetCatalog.list():
-    detectron2.data.DatasetCatalog.remove("my_dataset_train")
-    detectron2.data.MetadataCatalog.remove("my_dataset_train")
+# if "my_dataset_train" in detectron2.data.DatasetCatalog.list():
+#     detectron2.data.DatasetCatalog.remove("my_dataset_train")
+#     detectron2.data.MetadataCatalog.remove("my_dataset_train")
+
 if "my_dataset_val" in detectron2.data.DatasetCatalog.list():
     detectron2.data.DatasetCatalog.remove("my_dataset_val")
     detectron2.data.MetadataCatalog.remove("my_dataset_val")
 
-register_coco_instances("my_dataset_train", {}, "./dataset/combined_xview_instance_segmentation_dataset_train.json", "./dataset/")
+# register_coco_instances("my_dataset_train", {}, "./dataset/combined_xview_instance_segmentation_dataset_train.json", "./dataset/")
 register_coco_instances("my_dataset_val", {}, "./dataset/combined_xview_instance_segmentation_dataset_val.json", "./dataset/")
 
-train_metadata = MetadataCatalog.get("my_dataset_train")
-train_dataset_dicts = DatasetCatalog.get("my_dataset_train")
+# train_metadata = MetadataCatalog.get("my_dataset_train")
+# train_dataset_dicts = DatasetCatalog.get("my_dataset_train")
 
 val_metadata = MetadataCatalog.get("my_dataset_val")
 val_dataset_dicts = DatasetCatalog.get("my_dataset_val")
