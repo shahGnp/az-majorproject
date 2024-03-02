@@ -7,7 +7,6 @@ import os
 from random import randint
 import uuid
 from aimodel_pre import detectImage as detectImagePre
-from aimodel_post import detectImage as detectImagePost
 
 app = FastAPI()
 
