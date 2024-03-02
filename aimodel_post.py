@@ -33,7 +33,7 @@ if "my_dataset_val" in detectron2.data.DatasetCatalog.list():
     detectron2.data.MetadataCatalog.remove("my_dataset_val")
 
 # register_coco_instances("my_dataset_train", {}, "./dataset/combined_xview_instance_segmentation_dataset_train.json", "./dataset/")
-register_coco_instances("my_dataset_val", {}, "./dataset/combined_xview_instance_segmentation_dataset_val.json", "./dataset/")
+register_coco_instances("my_dataset_val", {}, "./dataset/combined_xview_damage_assessment_instance_segmentation_dataset_val.json", "./dataset/")
 
 # train_metadata = MetadataCatalog.get("my_dataset_train")
 # train_dataset_dicts = DatasetCatalog.get("my_dataset_train")
@@ -53,10 +53,10 @@ cfg.MODEL.DEVICE='cpu'
 cfg.SOLVER.MAX_ITER = 50000    # 300 iterations seems good enough for this toy dataset; you will need to train longer for a practical dataset
 cfg.SOLVER.STEPS = []        # do not decay learning rate
 cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 128   # The "RoIHead batch size". 128 is faster, and good enough for this toy dataset (default: 512)
-cfg.MODEL.ROI_HEADS.NUM_CLASSES = 1  # only has one class (ballon). (see https://detectron2.readthedocs.io/tutorials/datasets.html#update-the-config-for-new-datasets)
+cfg.MODEL.ROI_HEADS.NUM_CLASSES = 4  # only has one class (ballon). (see https://detectron2.readthedocs.io/tutorials/datasets.html#update-the-config-for-new-datasets)
 # NOTE: this config means the number of classes, but a few popular unofficial tutorials incorrect uses num_classes+1 here.
 
-cfg.MODEL.WEIGHTS = os.path.join('./models/', "model_final_pre.pth")  # path to the model we just trained
+cfg.MODEL.WEIGHTS = os.path.join('./models/', "model_final_post.pth")  # path to the model we just trained
 cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.75  # set a custom testing threshold
 predictor = DefaultPredictor(cfg)
 
@@ -71,7 +71,7 @@ def detectImage(image_path):
         )
     out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
     # cv2_imshow(out.get_image()[:, :, ::-1])
-    cv2.imwrite('./detection_pre.png',out.get_image()[:, :, ::-1])
+    cv2.imwrite('./detection_post.png',out.get_image()[:, :, ::-1])
     
 
 
