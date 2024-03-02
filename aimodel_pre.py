@@ -61,7 +61,7 @@ cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.75  # set a custom testing threshold
 predictor = DefaultPredictor(cfg)
 
 
-def detectImage(predictor, image_path):
+def detectImage(image_path):
     im = cv2.imread(os.path.join('./',image_path))
     outputs = predictor(im)
     v = Visualizer(im[:, :, ::-1],
@@ -71,10 +71,10 @@ def detectImage(predictor, image_path):
         )
     out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
     # cv2_imshow(out.get_image()[:, :, ::-1])
-    cv2.imwrite('./detecton.png',out.get_image()[:, :, ::-1])
+    cv2.imwrite('./detection.png',out.get_image()[:, :, ::-1])
     
 
 
 
 
-detectImage(predictor,'./guatemala-volcano_00000000_pre_disaster.png')
+# detectImage('./guatemala-volcano_00000000_pre_disaster.png')
